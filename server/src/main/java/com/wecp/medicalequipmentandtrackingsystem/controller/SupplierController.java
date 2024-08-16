@@ -31,4 +31,9 @@ public class SupplierController {
         return new ResponseEntity<>(orderService.updateOrderStatus(orderId, newStatus), HttpStatus.OK);
 
     }
+    @DeleteMapping("/api/orders/{id}")
+    public ResponseEntity<Void> deleteEvent(@PathVariable Long id){
+        orderService.deleteEvent(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

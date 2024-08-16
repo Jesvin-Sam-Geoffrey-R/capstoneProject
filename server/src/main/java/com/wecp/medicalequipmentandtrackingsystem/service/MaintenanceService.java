@@ -40,4 +40,8 @@ public class MaintenanceService {
         }
         return null;
     }
+
+   public void deleteaMaitainence(Long id){
+    this.maintenanceRepository.deleteById(id);
+   }
 }

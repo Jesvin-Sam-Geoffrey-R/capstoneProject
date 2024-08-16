@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
    
         // localStorage.setItem('role', data.role);
         this.authService.SetRole(data.role);
-        this.authService.saveToken(data.token)
+        this.authService.saveToken(data.token);
+        this.authService.SetUsername(data.username);
         this.router.navigateByUrl('/dashboard');
      
        

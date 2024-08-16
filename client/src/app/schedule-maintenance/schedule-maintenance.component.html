@@ -36,7 +36,7 @@
                       <div class="col-md-6">
                         <div class="mb-3">
                           <label for="content" class="form-label">Scheduled Date</label>
-                          <input type="date" name="scheduledDate" formControlName="scheduledDate" class="form-control" id="scheduledDate" placeholder="Scheduled Date">
+                          <input type="date" name="scheduledDate" formControlName="scheduledDate" class="form-control" id="scheduledDate" placeholder="Scheduled Date" [min]="minDate">
                           <div *ngIf="itemForm.controls['scheduledDate'].invalid && (itemForm.controls['scheduledDate'].dirty || itemForm.controls['scheduledDate'].touched)" class="ng-dirty">
                             <span *ngIf="itemForm.controls['scheduledDate'].errors" class="text-danger">Please Enter Scheduled Date.</span>
                           </div>
@@ -45,7 +45,7 @@
                       <div class="col-md-6">
                         <div class="mb-3">
                           <label for="completedDate" class="form-label">Completed Date</label>
-                          <input type="date" name="completedDate" formControlName="completedDate" class="form-control" id="completedDate" placeholder="Completed Date">
+                          <input type="date" name="completedDate" formControlName="completedDate" class="form-control" id="completedDate" placeholder="Completed Date" [min]="minDate">
                           <div *ngIf="itemForm.controls['completedDate'].invalid && (itemForm.controls['completedDate'].dirty || itemForm.controls['completedDate'].touched)" class="ng-dirty">
                             <span *ngIf="itemForm.controls['completedDate'].errors" class="text-danger">Please Enter Completed Date.</span>
                           </div>

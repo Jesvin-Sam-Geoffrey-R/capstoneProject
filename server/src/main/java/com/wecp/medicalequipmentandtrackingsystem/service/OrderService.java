@@ -44,4 +44,7 @@ public class OrderService {
         order.setStatus("Initiated");
         return orderRepository.save(order);
     }
+    public void deleteEvent(Long eventId) {
+        orderRepository.deleteById(eventId);
+    }
 }

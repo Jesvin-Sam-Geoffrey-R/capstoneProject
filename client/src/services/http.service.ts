@@ -112,8 +112,36 @@ export class HttpService {
     headers = headers.set('Content-Type', 'application/json');
     return this.http.post(this.serverName+'/api/user/register',details,{headers:headers});
   }
+
+  // deleteMaintainence(id: any): Observable<any>{
+  //   let headers = new HttpHeaders();
+  //   headers = headers.set('Content-Type', 'application/json');
+  //   return this.http.delete(this.serverName+`/api/maintainence/${id}`, {headers:headers});
+  // }
  
- 
+  delete1(eventId:any):Observable<any>{
+     
+    console.log("Data Type is ",typeof eventId);
+    const authToken = this.authService.getToken();
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    headers = headers.set('Authorization', `Bearer ${authToken}`);
+    return this.http.delete(this.serverName+`/api/maintainence/${eventId}`, { headers: headers });
+    //return this.http.put(this.serverName+'/api/technician/maintenance/update/'+maintenanceId,details,{headers:headers});
+  }
+  getAllUsers(): Observable<any> {
+    return this.http.get(`${this.serverName}/api/user/users`, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+  }
+  delete(eventId:any):Observable<any>{
+     
+    // console.log("Data Type is ",typeof eventId);
+     const authToken = this.authService.getToken();
+     let headers = new HttpHeaders();
+     headers = headers.set('Content-Type', 'application/json');
+     headers = headers.set('Authorization', `Bearer ${authToken}`);
+     return this.http.delete(this.serverName+`/api/orders/${eventId}`, { headers: headers });
+     //return this.http.put(this.serverName+'/api/technician/maintenance/update/'+maintenanceId,details,{headers:headers});
+   }
  
 }
  

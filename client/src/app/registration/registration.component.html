@@ -1,26 +1,24 @@
 <div class="vh-100 d-flex justify-content-center align-items-center">
-  <div class="container">
+  <div class="container glass-container p-2">
     <div class="row d-flex justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
-        <div class="border border-3 border-primary"></div>
-        <div class="card bg-white">
-          <div class="card-body p-5">
- 
-            <form class="mb-3 mt-md-4" [formGroup]="itemForm" (ngSubmit)="onRegister()">
-              <h2 class="fw-bold mb-2 text-uppercase ">Medical Equipment & Tracking System</h2>
-              <p class=" mb-5">Please enter your details here</p>
-              <div class="mb-3">
+        <div class="card bg-transparent">
+          <div class="card-body p-3">
+            <form class="mb-2 mt-md-3" [formGroup]="itemForm" (ngSubmit)="onRegister()">
+              <h2 class="fw-bold mb-2 text-uppercase ">MediTrack</h2>
+              <p class=" mb-4 ">Please enter your details here</p>
+              <div class="mb-2">
                 <label for="username" class="form-label ">Username</label>
                 <input type="text" name="username" formControlName="username" class="form-control" id="username"
                   placeholder="Username">
                 <div
-                  *ngIf="itemForm.get('username')?.invalid && (itemForm.get('username')?.dirty || itemForm.get('username')?.touched)"
+                  *ngIf="itemForm.errors?.['required'] && (itemForm.get('username')?.dirty || itemForm.get('username')?.touched)"
                   class="ng-dirty">
                   <span class="text-danger">Please Enter UserName.</span>
                 </div>
               </div>
  
-              <div class="mb-3">
+              <div class="mb-2">
                 <label for="email" class="form-label ">Email address</label>
                 <input type="email" name="email" formControlName="email" class="form-control" id="email"
                   placeholder="name@example.com">
@@ -33,18 +31,28 @@
  
               </div>
  
-              <div class="mb-3">
+              <div class="mb-2">
                 <label for="password" class="form-label ">Password</label>
                 <input type="password" name="password" formControlName="password" class="form-control" id="password"
                   placeholder="*******">
-                <div
+                <!-- <div
                   *ngIf="itemForm.get('password')?.invalid && (itemForm.get('password')?.dirty || itemForm.get('password')?.touched)"
                   class="ng-dirty">
                   <span class="text-danger">Please Enter password.</span>
+                <span *ngIf="itemForm.errors?.['password']">Not a valid Password</span>
+                </div> -->
+                <div *ngIf="itemForm.get('password')?.invalid && (itemForm.get('password')?.dirty || itemForm.get('password')?.touched)">
+                  <div *ngIf="itemForm.get('password')?.errors?.['required']" class="text-danger">Please Enter password.</div>
+                  <div *ngIf="itemForm.get('password')?.errors?.['InvalidPassword']" class="text-danger">Password must contain: 
+                    <ul>
+                      <li>At least one uppercase and lowercase letter</li>
+                      <li>At least one number and special character</li>
+                      </ul>
+                    </div>
                 </div>
               </div>
  
-              <div class="mb-3">
+              <div class="mb-2">
                 <label for="password" class="form-label ">Role</label>
                 <select class="form-control" formControlName="role">
                   <option value="null">Choose Role</option>
@@ -58,9 +66,15 @@
                   <span class="text-danger">Please choose role.</span>
                 </div>
               </div>
+              
+<div *ngIf="itemForm.get('username')?.errors?.['notUnique']" class="text-danger">
+                User already exists! Please try another username.
+              </div><br>
+ 
+              
  
               <div class="d-grid">
-                <button class="btn btn-outline-dark" type="submit">Submit</button>
+                <button class="btn btn-outline-light" type="submit" [disabled]="!itemForm.valid" >Submit</button>
               </div>
             </form>
             <div>

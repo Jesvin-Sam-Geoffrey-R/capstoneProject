@@ -22,6 +22,7 @@ export class MaintenanceComponent implements OnInit {
   responseMessage: any;
   maintenanceList: any=[];
   maintenanceObj: any={};
+  sortOrder: 'asc' | 'desc' = 'asc';
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService)
     {
       this.itemForm = this.formBuilder.group({
@@ -53,6 +54,7 @@ ngOnInit(): void {
     this.maintenanceList=[];
     this.httpService.getMaintenance().subscribe((data: any) => {
       this.maintenanceList=data;
+      this.sortEventsByDate();
      console.log(data)
     }, error => {
       // Handle error
@@ -102,6 +104,36 @@ ngOnInit(): void {
     }
     else{
       this.itemForm.markAllAsTouched();
+    }
+  }
+
+  onDelete(eventId: any): any {
+ 
+    this.httpService.delete1(eventId).subscribe(()=>{
+    this.getMaintenance();
+    console.log(eventId);
+   });
+ }
+  sortEventsByDate() {
+    this.maintenanceList.sort((a:any, b:any) => {
+      const dateA = new Date(a.scheduledDate).getTime();
+      const dateB = new Date(b.scheduledDate).getTime();
+      return this.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+  }
+ 
+  toggleSortOrder() {
+    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    this.sortEventsByDate();
+  }
+  searchTitle:string='';
+  searchCharity(){
+    if(this.searchTitle.trim().length!=0){
+      this.maintenanceList=this.maintenanceList.filter((p:any)=>{
+        return p.equipment.hospital.name.toLowerCase().includes(this.searchTitle.toLowerCase());
+      })
+    }else{
+      this.getMaintenance();
     }
   }
 }

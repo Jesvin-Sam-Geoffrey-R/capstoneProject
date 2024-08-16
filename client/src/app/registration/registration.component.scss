@@ -1,0 +1,122 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Row Styles */
+  .row {
+    backdrop-filter: blur(5px);
+    background: rgba(243, 243, 243, 0.224);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 10px 0; /* Reduced margin */
+  }
+  
+  /* Margin Top for Heading */
+  .mb-0 {
+    margin-top: 30px !important; /* Reduced margin */
+  }
+  
+  /* Table Styles */
+  .table {
+    background-color: transparent;
+  }
+  
+  .table th, .table td {
+    background-color: transparent;
+  }
+  
+  .bg-transparent {
+    --bs-bg-opacity: 1;
+    background-color: transparent !important;
+    backdrop-filter: blur(7px);
+  }
+  
+  /* Card Styles */
+  .card-body {
+    backdrop-filter: blur(1px) !important;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 5px 7px rgb(255 255 255 / 19%);
+    padding: 1rem; /* Reduced padding */
+  }
+  
+  .card {
+    border: 0px;
+    display: flex;
+    backdrop-filter: blur(5px);
+    background: rgba(243, 243, 243, 0.224);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 10px 0; /* Reduced margin */
+  }
+  
+  .table-responsive {
+    border-radius: 20px;
+  }
+  
+  .card-header {
+    background-color: transparent;
+    border-bottom: none;
+  }
+  
+  /* Form Control Styles */
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+    border-radius: 5px;
+    padding: 0.5rem; /* Reduced padding */
+  }
+  
+  .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Button Styles */
+  .btn {
+    width: 150px; /* Reduced width */
+    height: 40px; /* Reduced height */
+    cursor: pointer;
+    background: rgb(173, 232, 244);
+    color: black;
+    border: 2px solid #91C9FF;
+    outline: none;
+    transition: 1s ease-in-out;
+  }
+  
+  .btn:hover {
+    transition: 1s ease-in;
+    background: #1d5b99;
+    color: white;
+    border: 2px solid #00498e;
+    cursor: pointer;
+  }
+  
+  /* Grid Styles */
+  .d-grid {
+    justify-content: center;
+    align-items: center;
+    display: grid !important;
+  }
+  
+  /* Font Weight Styles */
+  .fw-bold {
+    font-weight: 600 !important;
+    margin-top: 100px; /* Reduced margin */
+  }
+  
+  /* Additional Styles to Reduce Space */
+  .mb-3 {
+    margin-bottom: 1rem !important; /* Reduced margin-bottom */
+  }
+  
+  .mt-md-4 {
+    margin-top: 1rem !important; /* Reduced margin-top */
+  }

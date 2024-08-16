@@ -1,0 +1,116 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Row Styles */
+  .row {
+    backdrop-filter: blur(5px);
+    background: rgba(243, 243, 243, 0.224);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Margin Top for Heading */
+  .mb-0 {
+    margin-top: 60px !important;
+  }
+  
+  /* Card Styles */
+  .card {
+    border: 0px;
+    display: flex;
+    backdrop-filter: blur(5px);
+    background: rgba(243, 243, 243, 0.224);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .card-header {
+    background-color: transparent;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .card-body {
+    backdrop-filter: blur(1px) !important;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.557);
+    padding: 2rem;
+  }
+  
+  /* Form Styles */
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem;
+    backdrop-filter: blur(5px);
+    background: rgba(243, 243, 243, 0.224);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+  }
+  
+  /* Button Styles */
+  .btn {
+    width: 180px;
+    height: 50px;
+    cursor: pointer;
+    background: fixed;
+    color: black;
+    border: 2px solid #91C9FF;
+    outline: none;
+    transition: 1s ease-in-out;
+  }
+  
+  .btn:hover {
+    transition: 1s ease-in;
+    background: rgb(0, 119, 182);
+    color: white;
+    border: 2px solid #0059ac;
+  }
+  
+  /* Grid Styles */
+  .d-grid {
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Error Message Styles */
+  .text-danger {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* Success Message Styles */
+  .alert-success {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 1rem;
+    }
+  
+    .btn {
+      font-size: 0.875rem;
+      padding: 0.5rem;
+    }
+  }
+  

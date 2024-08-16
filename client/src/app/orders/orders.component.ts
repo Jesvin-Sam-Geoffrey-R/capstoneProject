@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/http.service';
 import { AuthService } from '../../services/auth.service';
+
  
 @Component({
   selector: 'app-orders',
@@ -18,7 +19,7 @@ export class OrdersComponent implements OnInit {
    showMessage: any;
    responseMessage: any;
    orderList: any=[];
- 
+   sortOrder: 'asc' | 'desc' = 'asc'
    statusModel:any={newStatus:null}
    constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService)
   {
@@ -31,6 +32,7 @@ export class OrdersComponent implements OnInit {
      this.orderList=[];
      this.httpService.getorders().subscribe((data: any) => {
        this.orderList=data;
+       this. sortEventsByDate();
       console.log(data)
      }, error => {
        // Handle error
@@ -65,6 +67,35 @@ export class OrdersComponent implements OnInit {
       });;
     }
    }
+   onDelete(eventId: any): any {
+ 
+    this.httpService.delete(eventId).subscribe(()=>{
+    this.getOrders();
+    console.log(eventId);
+   });
+ }
+ sortEventsByDate() {
+  this.orderList.sort((c:any, d:any) => {
+    const dateA = new Date(c.orderDate).getTime();
+    const dateB = new Date(d.orderDate).getTime();
+    return this.sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+  });
+}
+ 
+toggleSortOrder() {
+  this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+  this.sortEventsByDate();
+}
+searchTitle:string='';
+  searchCharity(){
+    if(this.searchTitle.trim().length!=0){
+      this.orderList=this.orderList.filter((p:any)=>{
+        return p.equipment.hospital.name.toLowerCase().includes(this.searchTitle.toLowerCase());
+      })
+    }else{
+      this.getOrders();
+    }
+  }
  }
  
  

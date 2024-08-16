@@ -18,12 +18,13 @@ export class ScheduleMaintenanceComponent implements OnInit {
   errorMessage:any;
   hospitalList:any=[];
   assignModel: any={};
- 
+ minDate:any;
   showMessage: any;
   responseMessage: any;
   equipmentList: any=[];
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService)
     {
+      this.minDate = this.getTodayDate();
       this.itemForm = this.formBuilder.group({
         scheduledDate: [this.formModel.scheduledDate,[ Validators.required, this.dateValidator]],
         completedDate: [this.formModel.completedDate,[ Validators.required, this.dateValidator]],
@@ -70,7 +71,7 @@ export class ScheduleMaintenanceComponent implements OnInit {
       if (this.itemForm.valid) {
         this.showError = false;
      
-        this.httpService.scheduleMaintenance(this.itemForm.value,1).subscribe((data: any) => {
+        this.httpService.scheduleMaintenance(this.itemForm.value,2).subscribe((data: any) => {
           this.itemForm.reset();
           this.showMessage=true;
           this.responseMessage='Save Successfully';
@@ -103,5 +104,13 @@ export class ScheduleMaintenanceComponent implements OnInit {
    });;
  
 }
+private getTodayDate(): string {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const day = today.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+ 
 }
  

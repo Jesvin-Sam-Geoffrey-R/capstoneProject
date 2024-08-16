@@ -8,18 +8,25 @@
         <div class="card">
             <div class="card-header">Orders  Information</div>
         </div>
+        <div>
+          <input type="text" placeholder="Search By Hospital Name" [(ngModel)]="searchTitle" (input)="searchCharity() "class="rounded border-0 bg-light w-25 p-2 search-input">
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Sr#</th>
-                            <th>Order Date</th>
+                            <th>SNo</th>
+                            <th>Order Date
+                              <button (click)="toggleSortOrder()"> {{ sortOrder === 'asc' ? '⬇' : '⬆'}}</button>
+                            </th>
+
                             <th>Quality</th>
                             <th>Status</th>      
                             <th>Equipment</th>  
                             <th>Hospital</th>                
-                            <th>Action</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let val of orderList">
@@ -36,10 +43,13 @@
                             <td>
                                 <p>Id:{{val.equipment.hospital.id}}</p>
                                 <p>Name:{{val.equipment.hospital.name}}</p>
-                                <p>Description:{{val.equipment.hospital.description}}</p>
+                                <!-- <p>Description:{{val.equipment.hospital.description}}</p> -->
                             </td>
                             <td>
-                                <button  data-bs-toggle="modal" (click)="edit(val)" data-bs-target="#driverModal"  class="btn btn-warning">Update Status</button>
+                                <button  data-bs-toggle="modal" (click)="edit(val)" data-bs-target="#driverModal"  class="btn btn-warning" [disabled]="val.status === 'Complete'">Update Status</button>
+                            </td>
+                            <td>
+                              <button   (click)="onDelete(val.id)" class="btn btn-warning">Delete</button>
                             </td>
                             <br>
                        

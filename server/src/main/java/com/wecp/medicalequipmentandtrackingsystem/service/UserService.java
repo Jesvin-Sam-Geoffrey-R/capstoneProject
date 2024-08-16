@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService{
@@ -48,10 +49,14 @@ public class UserService implements UserDetailsService{
         return userRepository.findByUsername(username);
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
          User user = getUserByUsername(username);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
+    }
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     // public UserDetails loadByUsername(String username) throws UsernameNotFoundException{

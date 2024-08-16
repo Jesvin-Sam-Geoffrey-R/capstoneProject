@@ -27,4 +27,10 @@ public class TechnicianController {
         // Update the maintenance record with the given id and return updated record with status code 200 OK;
         return ResponseEntity.ok(maintenanceService.updateMaintenance(maintenanceId,updatedMaintenance));
     }
+
+    @DeleteMapping("/api/maintainence/{id}")
+    public void deleteMaintainence(@PathVariable Long id){
+        //rnew ResponseEntity<Void>(maintenanceService.deleteaMaitainence(id), HttpStatus.OK);
+        maintenanceService.deleteaMaitainence(id);
+    }
 }

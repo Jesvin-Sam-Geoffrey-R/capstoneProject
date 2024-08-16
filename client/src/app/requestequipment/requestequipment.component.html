@@ -32,7 +32,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="content" class="form-label">Order Date</label>
-                      <input type="date" name="orderDate" formControlName="orderDate" class="form-control" id="orderDate" placeholder="Order Date">
+                      <input type="date" name="orderDate" formControlName="orderDate" class="form-control" id="orderDate" placeholder="Order Date" [min]="minDate">
                       <div *ngIf="itemForm.controls['orderDate'].invalid && (itemForm.controls['orderDate'].dirty || itemForm.controls['orderDate'].touched)" class="ng-dirty">
                         <span *ngIf="itemForm.controls['orderDate'].errors" class="text-danger">Please Enter order Date.</span>
                       </div>
@@ -42,8 +42,12 @@
                     <div class="mb-3">
                       <label for="quantity" class="form-label">Quantity</label>
                       <input type="number" name="quantity" formControlName="quantity" class="form-control" id="quantity" placeholder="Quantity">
-                      <div *ngIf="itemForm.controls['quantity'].invalid && (itemForm.controls['quantity'].dirty || itemForm.controls['quantity'].touched)" class="ng-dirty">
+                      <!-- <div *ngIf="itemForm.controls['quantity'].invalid && (itemForm.controls['quantity'].dirty || itemForm.controls['quantity'].touched)" class="ng-dirty">
                         <span *ngIf="itemForm.controls['quantity'].errors" class="text-danger">Please Enter Quantity.</span>
+                      </div> -->
+                      <div *ngIf="itemForm.get('quantity')?.invalid && (itemForm.get('quantity')?.dirty || itemForm.get('quantity')?.touched)">
+                        <div *ngIf="itemForm.get('quantity')?.errors?.['required']" class="text-danger">Please Enter Quantity.</div>
+                        <div *ngIf="itemForm.get('quantity')?.errors?.['negative']" class="text-danger">Quantity can not be negative</div>
                       </div>
                     </div>
                     <div class="mb-3">

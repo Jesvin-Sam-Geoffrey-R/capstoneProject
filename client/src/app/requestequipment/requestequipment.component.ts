@@ -22,11 +22,13 @@ export class RequestequipmentComponent implements OnInit {
   showMessage: any;
   responseMessage: any;
   equipmentList: any=[];
+  minDate: any;
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService)
     {
       this.itemForm = this.formBuilder.group({
-        orderDate: [this.formModel.scheduledDate,[ Validators.required, this.dateValidator]],  
-        quantity: [this.formModel.description,[ Validators.required]],
+       // orderDate: [this.formModel.scheduledDate,[ Validators.required]],  
+       orderDate:[{value:'',disabled:true},Validators.required],
+        quantity: [this.formModel.description,[ Validators.required,this.nonegative]],
         status: [this.formModel.status,[ Validators.required]],
         equipmentId: [this.formModel.equipmentId,[ Validators.required]],
         hospitalId: [this.formModel.equipmentId,[ Validators.required]],
@@ -34,8 +36,12 @@ export class RequestequipmentComponent implements OnInit {
  
  
  
-}  ngOnInit(): void {
+}  
+ngOnInit(): void {
   this.getHospital();
+  this.setMinDate();
+  const currentDate = new Date().toISOString().slice(0,10);
+  this.itemForm.patchValue({ orderDate: currentDate });
   }
   getHospital() {
     this.hospitalList=[];
@@ -49,14 +55,19 @@ export class RequestequipmentComponent implements OnInit {
       console.error('Login error:', error);
     });;
   }
-  dateValidator(control: AbstractControl): ValidationErrors | null {
-    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+  // dateValidator(control: AbstractControl): ValidationErrors | null {
+  //   const datePattern = /^\d{4}-\d{2}-\d{2}$/;
  
-    if (!datePattern.test(control.value)) {
-      return { invalidDate: true };
-    }
+  //   if (!datePattern.test(control.value)) {
+  //     return { invalidDate: true };
+  //   }
  
-    return null;
+  //   return null;
+  // }
+  setMinDate() {
+    const today = new Date();
+    today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+    this.minDate = today.toISOString().slice(0, 16);
   }
   onSubmit()
   {
@@ -66,7 +77,7 @@ export class RequestequipmentComponent implements OnInit {
       if (this.itemForm.valid) {
         this.showError = false;
      
-        this.httpService.orderEquipment(this.itemForm.value,1).subscribe((data: any) => {
+        this.httpService.orderEquipment(this.itemForm.value,this.itemForm.controls['equipmentId'].value).subscribe((data: any) => {
           this.itemForm.reset();
           this.showMessage=true;
           this.responseMessage='Save Successfully';
@@ -99,5 +110,11 @@ export class RequestequipmentComponent implements OnInit {
     });;
    
  }
+ nonegative(control: AbstractControl): ValidationErrors | null{
+  if(control.value < 0 || control.value == 0){
+    return {negative : true}
+  }
+  return null;
+}
 }
  
