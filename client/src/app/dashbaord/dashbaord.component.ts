@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-
+import { Component} from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpService } from '../../services/http.service';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-dashbaord',
   templateUrl: './dashbaord.component.html',
@@ -7,6 +10,7 @@ import { Component } from '@angular/core';
 })
 export class DashbaordComponent {
 
+  
 }
 // import { Component, OnInit } from '@angular/core';
 // import { Router } from '@angular/router';

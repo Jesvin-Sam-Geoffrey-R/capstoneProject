@@ -26,8 +26,19 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/requestequipment']">Request Equipment</a>
+      </li>
+ 
+      
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/maintenance']">View Maintenances</a>
  
       </li>
+
+   
+    <li class="nav-item">
+      <a class="nav-link" *ngIf="roleName === 'HOSPITAL'" [routerLink]="['/orders']">View Orders</a>
+
+    </li>
      
       <li class="nav-item">
         <a class="nav-link" *ngIf="roleName === 'TECHNICIAN'" [routerLink]="['/maintenance']">Maintenance</a>
