@@ -21,7 +21,7 @@
                               <button (click)="toggleSortOrder()"> {{ sortOrder === 'asc' ? '⬇' : '⬆'}}</button>
                             </th>
 
-                            <th>Quality</th>
+                            <th>Quantity</th>
                             <th>Status</th>      
                             <th>Equipment</th>  
                             <th>Hospital</th>                
@@ -33,7 +33,7 @@
                         <tr >
                             <td>{{val.id}}</td>
                             <td>{{val.orderDate | date: 'dd-MMM-yyyy'}}</td>                  
-                            <td>{{val.Quality}}</td>
+                            <td>{{val.quantity}}</td>
                             <td>{{val.status}}</td>
                             <td>
                                 <p>Id:{{val.equipment.id}}</p>

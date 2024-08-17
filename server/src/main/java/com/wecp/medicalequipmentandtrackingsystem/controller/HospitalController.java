@@ -67,7 +67,7 @@ public class HospitalController {
     public ResponseEntity<Maintenance> scheduleMaintenance
             (@RequestParam Long equipmentId, @RequestBody Maintenance maintenance) {
         // schedule maintenance for the equipment and return the scheduled maintenance with status code 201 = CREATED;
-        return new ResponseEntity<Maintenance>(maintenanceService. scheduleMaintenance(equipmentId,maintenance), HttpStatus.CREATED);
+        return new ResponseEntity<Maintenance>(maintenanceService.scheduleMaintenance(equipmentId,maintenance), HttpStatus.CREATED);
     }
 
     @PostMapping("/api/hospital/order")

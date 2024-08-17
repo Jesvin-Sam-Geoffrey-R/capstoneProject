@@ -56,6 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/api/supplier/order/update/{orderId}").hasAuthority("SUPPLIER")
                 .antMatchers(HttpMethod.DELETE, "/api/maintainence/{id}").hasAuthority("TECHNICIAN")
                 .antMatchers(HttpMethod.DELETE, "/api/orders/{id}").hasAuthority("SUPPLIER")
+                .antMatchers(HttpMethod.DELETE, "/api/orders/{id}").hasAuthority("HOSPITAL")
+
 
                 
 

@@ -12,7 +12,7 @@
                 <input type="text" name="username" formControlName="username" class="form-control" id="username"
                   placeholder="Username">
                 <div
-                  *ngIf="itemForm.errors?.['required'] && (itemForm.get('username')?.dirty || itemForm.get('username')?.touched)"
+                  *ngIf="itemForm.get('username')?.hasError('required') && (itemForm.get('username')?.dirty || itemForm.get('username')?.touched)"
                   class="ng-dirty">
                   <span class="text-danger">Please Enter UserName.</span>
                 </div>
@@ -47,6 +47,7 @@
                     <ul>
                       <li>At least one uppercase and lowercase letter</li>
                       <li>At least one number and special character</li>
+                      <li>Password Should be 8 characters long</li>
                       </ul>
                     </div>
                 </div>

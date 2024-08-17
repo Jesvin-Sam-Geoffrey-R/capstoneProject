@@ -65,7 +65,7 @@ ngOnInit(): void {
   }
   viewDetails(details:any)
   {
-    debugger;
+    // debugger;
     this.maintenanceObj={};
     this.maintenanceObj=details.equipment;
   }
