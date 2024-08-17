@@ -142,6 +142,13 @@ export class HttpService {
      return this.http.delete(this.serverName+`/api/orders/${eventId}`, { headers: headers });
      //return this.http.put(this.serverName+'/api/technician/maintenance/update/'+maintenanceId,details,{headers:headers});
    }
- 
+   deleteInfo(id:any){
+    // alert("HTTP SERVICE"+id);
+    const authToken = this.authService.getToken();
+     let headers = new HttpHeaders();
+     headers = headers.set('Content-Type', 'application/json');
+     headers = headers.set('Authorization', `Bearer ${authToken}`);
+     return this.http.delete(this.serverName+`/api/hospital/info/${id}`, { headers: headers });
+   }
 }
  

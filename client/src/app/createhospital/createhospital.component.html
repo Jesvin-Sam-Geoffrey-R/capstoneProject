@@ -63,8 +63,9 @@
                       <th>Sno</th>
                       <th>Hospital Name</th>
                       <th>Location</th>
-                 
+                    
                       <th>Action</th>
+                      <th>Delete</th>
                   </tr>
               </thead>
               <tbody>
@@ -75,6 +76,9 @@
                
                       <td>
                           <button data-bs-toggle="modal" (click)="Addequipment(hospital)" data-bs-target="#driverModal" class="btn btn-primary">Assign Equipments</button>
+                      </td>
+                      <td>
+                        <button (click)="delete(hospital.id)" class="btn btn-primary">Delete</button>
                       </td>
                   </tr>
               </tbody>

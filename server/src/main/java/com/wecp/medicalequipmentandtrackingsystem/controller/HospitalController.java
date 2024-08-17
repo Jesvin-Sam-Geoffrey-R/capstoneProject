@@ -75,4 +75,10 @@ public class HospitalController {
         // place order for the equipment and return the placed order with status code 201 = CREATED;
         return new ResponseEntity<Order>(orderService.placeOrder(equipmentId,order),HttpStatus.CREATED);
     }
+    @DeleteMapping("/api/hospital/info/{id}")
+    public ResponseEntity<Void> deleteInfo(@PathVariable Long id){
+        // System.out.println("COntroller Backend " + id);
+        this.hospitalService.deleteInfo(id);
+        return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+    }
 }

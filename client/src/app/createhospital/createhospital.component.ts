@@ -104,6 +104,13 @@ export class CreatehospitalComponent implements OnInit {
       this.equipmentForm.markAllAsTouched();
     }
   }
+  delete(id:any){
+    // console.log(id);
+    this.httpService.deleteInfo(id).subscribe((a)=>{
+      // this.showMessage=a
+      this.getHospital();
+    });
+  }
  
 }
  
