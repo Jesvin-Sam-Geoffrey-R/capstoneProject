@@ -45,7 +45,7 @@ public class HospitalService {
 
 
     public void deleteInfo(Long id){
-        System.out.print("HospiTAL SERVICE"+id);
+        // System.out.print("HospiTAL SERVICE"+id);
         hospitalRepository.deleteById(id);
         this.getAllHospitals();
         // return "Deleted Successfully";

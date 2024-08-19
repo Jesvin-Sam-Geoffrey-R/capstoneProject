@@ -20,6 +20,8 @@ import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService{
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Autowired
    private UserRepository userRepository;
@@ -31,6 +33,7 @@ public class UserService implements UserDetailsService{
         return null;
     }
     else{
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
     }
@@ -38,7 +41,7 @@ public class UserService implements UserDetailsService{
     public User loginUser(String username, String password){
 
         User user = userRepository.findByUsername(username);
-            if (user != null && user.getPassword().equals(password)) {
+            if (user != null && passwordEncoder.matches(password, user.getPassword())) {
                 return user;
             }
             return null;
