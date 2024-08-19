@@ -21,6 +21,7 @@ export class OrdersComponent implements OnInit {
    orderList: any=[];
    sortOrder: 'asc' | 'desc' = 'asc'
    statusModel:any={newStatus:null}
+  role!: string|null;
    constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService)
   {
   }  
@@ -29,6 +30,13 @@ export class OrdersComponent implements OnInit {
    }  
  
    getOrders() {
+    alert(localStorage.getItem("role"));
+    if(localStorage.getItem("role")==="HOSPITAL"){
+      this.role="HOSPITAL";
+    }
+    else{
+      this.role=null;
+    }
      this.orderList=[];
      this.httpService.getorders().subscribe((data: any) => {
        this.orderList=data;
@@ -41,6 +49,7 @@ export class OrdersComponent implements OnInit {
        console.error('Login error:', error);
      });;
    }
+   
    viewDetails(details:any)
    {
    
@@ -68,7 +77,10 @@ export class OrdersComponent implements OnInit {
     }
    }
    onDelete(eventId: any): any {
- 
+    // alert(localStorage.getItem("role"));
+
+    alert(localStorage.getItem("role")==="HOSPITAL")
+    // this.role=localStorage.getItem("role");
     this.httpService.delete(eventId).subscribe(()=>{
     this.getOrders();
     console.log(eventId);

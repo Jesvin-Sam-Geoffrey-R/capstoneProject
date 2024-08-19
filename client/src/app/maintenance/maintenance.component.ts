@@ -23,6 +23,7 @@ export class MaintenanceComponent implements OnInit {
   maintenanceList: any=[];
   maintenanceObj: any={};
   sortOrder: 'asc' | 'desc' = 'asc';
+  role!: string | null;
   constructor(public router:Router, public httpService:HttpService, private formBuilder: FormBuilder, private authService:AuthService)
     {
       this.itemForm = this.formBuilder.group({
@@ -51,6 +52,14 @@ ngOnInit(): void {
     return null;
   }
   getMaintenance() {
+    // this.role=;
+    // alert(this.role==='HOSPITAL')
+    if(localStorage.getItem("role")==="HOSPITAL"){
+      this.role="HOSPITAL";
+    }
+    else{
+      this.role=null;
+    }
     this.maintenanceList=[];
     this.httpService.getMaintenance().subscribe((data: any) => {
       this.maintenanceList=data;

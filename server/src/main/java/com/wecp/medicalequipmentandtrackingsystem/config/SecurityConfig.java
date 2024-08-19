@@ -90,7 +90,7 @@ public class SecurityConfig{
                 .antMatchers(HttpMethod.PUT, "/api/supplier/order/update/{orderId}").hasAnyAuthority("SUPPLIER", "HOSPITAL")
                 .antMatchers(HttpMethod.DELETE, "/api/maintainence/{id}").hasAnyAuthority("TECHNICIAN", "HOSPITAL")
                 .antMatchers(HttpMethod.DELETE, "/api/orders/{id}").hasAnyAuthority("SUPPLIER", "HOSPITAL")
-                // .antMatchers(HttpMethod.DELETE, "/api/orders/{id}").hasAnyAuthority("HOSPITAL", "HOSPITAL")
+                // .antMatchers(HttpMethod.DELETE, "/api/orders/{id}").hasAnyAuthority("HOSPITAL")
 
 
                 

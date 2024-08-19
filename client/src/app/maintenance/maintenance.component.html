@@ -72,7 +72,9 @@
                             <th>Equipment</th>  
                             <th>Hospital</th>                
                             <th>Edit</th>
-                            <th>Delete</th>
+                            <th *ngIf= "role==='HOSPITAL'">
+                                Delete
+                            </th>
                         </tr>
                     </thead>
                     <tbody *ngFor="let val of maintenanceList">
@@ -93,7 +95,7 @@
                             <td>
                                 <button  data-bs-toggle="modal" (click)="edit(val)" data-bs-target="#driverModal"  class="btn btn-warning" [disabled]="val.status === 'Complete'">Edit</button>
                             </td>
-                            <td>
+                            <td *ngIf="role==='HOSPITAL'">
                                 <button   (click)="onDelete(val.id)" class="btn btn-warning">Delete</button>
                             </td>
                             <br>
